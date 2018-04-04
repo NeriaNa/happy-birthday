@@ -141,5 +141,6 @@
         android:paddingBottom="15dp"
         android:background="@drawable/selector_shadowed_button"
         android:textColor="@android:color/white"
-        android:text="@string/view_details_show_birthday_screen"/>
+        android:text="@string/view_details_show_birthday_screen"
+        android:enabled="false"/>
 </android.support.constraint.ConstraintLayout>
