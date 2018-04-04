@@ -2,17 +2,144 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".details.DetailsActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsActivity">
+    android:orientation="vertical"
+    android:background="@color/blankDark">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/view_details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="16sp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/view_details_horizontal_guideline"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.52"/>
+
+    <FrameLayout android:id="@+id/view_details_profile_picture_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view_details_horizontal_guideline">
 
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/view_details_profile_picture"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/default_image"
+            app:civ_border="true"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="0dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="@color/blankDark"
+            app:civ_shadow_radius="10"
+            android:contentDescription="@string/view_details_profile_picture"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/view_details_profile_picture_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="12dp"
+            app:fabSize="normal"
+            android:src="@drawable/ic_camera"/>
+    </FrameLayout>
+
+    <android.support.v7.widget.CardView android:id="@+id/view_details_details"
+        app:layout_constraintTop_toBottomOf="@id/view_details_profile_picture_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/view_details_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rounded_edit_text_top"
+                android:paddingLeft="7dp"
+                android:paddingStart="7dp"
+                android:paddingRight="7dp"
+                android:paddingEnd="7dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:inputType="textNoSuggestions"
+                android:imeOptions="actionGo"
+                android:textSize="16sp"
+                android:hint="@string/view_details_full_name"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"/>
+
+            <View android:id="@+id/view_details_separator1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_below="@id/view_details_full_name"
+                android:background="@android:color/darker_gray"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/view_details_date_of_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_details_separator1"
+                android:background="@drawable/shape_rounded_edit_text_bottom"
+                android:paddingLeft="7dp"
+                android:paddingStart="7dp"
+                android:paddingRight="7dp"
+                android:paddingEnd="7dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionGo"
+                android:textSize="16sp"
+                android:hint="@string/view_details_date_of_birth"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/view_details_show_birthday_screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/view_details_details"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="12dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/selector_shadowed_button"
+        android:textColor="@android:color/white"
+        android:text="@string/view_details_show_birthday_screen"/>
 </android.support.constraint.ConstraintLayout>

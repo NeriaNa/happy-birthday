@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Happy Birthday</string>
+
+    <string name="view_details_profile_picture">Profile picture</string>
+    <string name="view_details_full_name">Full name</string>
+    <string name="view_details_date_of_birth">Date of birth</string>
+    <string name="view_details_show_birthday_screen">Show birthday screen</string>
 </resources>
