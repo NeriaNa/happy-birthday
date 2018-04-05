@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
@@ -15,9 +14,10 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import nerianachum.com.happybirthday.BasePresenter;
 import nerianachum.com.happybirthday.R;
 
-public class DetailsActivity extends AppCompatActivity implements DetailsView.DetailsViewListener {
+public class DetailsActivity extends BasePresenter implements DetailsView.DetailsViewListener {
 
     private DetailsView detailsView;
 
@@ -30,6 +30,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsView.De
 
         detailsView = new DetailsViewImpl(LayoutInflater.from(this), null, this);
         detailsView.setListener(this);
+
+        setDismissKeyboardOnFocusChangeListener();
 
         if (savedInstanceState != null) {
             String restoredSelectedImageUri = savedInstanceState.getString(getString(R.string.profile_picture_uri));
