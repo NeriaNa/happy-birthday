@@ -33,7 +33,9 @@ dependencies {
     //Tools
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     //External views
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
 }

@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.RequestCreator;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,6 +23,7 @@ public class DetailsViewImpl implements DetailsView {
     private View rootView;
     private DetailsViewListener listener;
 
+    @BindView(R.id.view_details_profile_picture) CircularImageView profilePictureImageView;
     @BindView(R.id.view_details_full_name) AppCompatEditText fullNameEditText;
     @BindView(R.id.view_details_date_of_birth) AppCompatTextView dateOfBirthTextView;
     @BindView(R.id.view_details_show_birthday_screen) AppCompatButton showBirthdayScreenButton;
@@ -27,6 +31,12 @@ public class DetailsViewImpl implements DetailsView {
     public DetailsViewImpl(LayoutInflater inflater, ViewGroup container, Activity activity) {
         rootView = inflater.inflate(R.layout.activity_details, container, false);
         ButterKnife.bind(this, activity);
+    }
+
+    @OnClick(R.id.view_details_profile_picture_edit) public void onProfilePictureEditClicked() {
+        if (listener != null) {
+            listener.onProfilePictureEditClicked();
+        }
     }
 
     @OnClick(R.id.view_details_show_birthday_screen)
@@ -58,6 +68,11 @@ public class DetailsViewImpl implements DetailsView {
     @Override
     public CharSequence getDateOfBirthInput() {
         return dateOfBirthTextView.getText();
+    }
+
+    @Override
+    public void setProfilePicture(RequestCreator requestCreator) {
+        requestCreator.into(profilePictureImageView);
     }
 
     @Override

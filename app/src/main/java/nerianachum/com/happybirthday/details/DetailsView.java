@@ -1,5 +1,7 @@
 package nerianachum.com.happybirthday.details;
 
+import com.squareup.picasso.RequestCreator;
+
 import nerianachum.com.happybirthday.MvpView;
 
 public interface DetailsView extends MvpView {
@@ -8,11 +10,13 @@ public interface DetailsView extends MvpView {
         void onFullNameChanged(CharSequence fullName);
         void onDateOfBirthChanged(CharSequence dateOfBirth);
         void onShowBirthdayScreenClicked();
+        void onProfilePictureEditClicked();
     }
 
     CharSequence getFullNameInput();
     CharSequence getDateOfBirthInput();
 
+    void setProfilePicture(RequestCreator requestCreator);
     void setShowBirthdayScreenButtonEnabled(boolean enabled);
 
     /**

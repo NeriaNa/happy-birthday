@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Happy Birthday</string>
 
+    <string name="profile_picture_uri">profile_picture_uri</string>
+
     <string name="view_details_profile_picture">Profile picture</string>
     <string name="view_details_full_name">Full name</string>
     <string name="view_details_date_of_birth">Date of birth</string>
