@@ -7,21 +7,29 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 import nerianachum.com.happybirthday.BasePresenter;
 import nerianachum.com.happybirthday.R;
 
-public class DetailsActivity extends BasePresenter implements DetailsView.DetailsViewListener {
+public class DetailsActivity extends BasePresenter
+        implements DetailsView.DetailsViewListener,
+        DatePickerDialog.OnDateSetListener {
 
     private DetailsView detailsView;
 
     private Uri selectedImageUri;
+    private Calendar selectedDateOfBirth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,7 @@ public class DetailsActivity extends BasePresenter implements DetailsView.Detail
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    //region DetailsViewListener
     @Override
     public void onFullNameChanged(CharSequence fullName) {
         boolean fullNameEmpty = fullName == null || fullName.length() == 0;
@@ -75,6 +84,21 @@ public class DetailsActivity extends BasePresenter implements DetailsView.Detail
         CropImage.startPickImageActivity(this);
     }
 
+    @Override
+    public void onDateOfBirthClicked() {
+        DatePickerDialog dpd = DatePickerDialog.newInstance(DetailsActivity.this,
+                selectedDateOfBirth != null ? selectedDateOfBirth : Calendar.getInstance()
+        );
+        dpd.vibrate(false);
+        dpd.setVersion(DatePickerDialog.Version.VERSION_1);
+        dpd.showYearPickerFirst(true);
+        dpd.setTitle("Date of birth");
+
+        dpd.show(getFragmentManager(), getString(R.string.date_of_birth_date_picker));
+    }
+    //endregion
+
+    //region Permissions
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE) {
@@ -121,4 +145,18 @@ public class DetailsActivity extends BasePresenter implements DetailsView.Detail
             }
         }
     }
+    //endregion
+
+    //region DatePickerDialog.OnDateSetListener
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        selectedDateOfBirth = Calendar.getInstance();
+        selectedDateOfBirth.set(year, monthOfYear, dayOfMonth);
+
+        String dateOdBirthText = !DateFormat.is24HourFormat(getApplicationContext())
+                ? String.format(Locale.getDefault(), "%02d/%02d/%d", monthOfYear + 1, dayOfMonth, year)
+                : String.format(Locale.getDefault(), "%02d/%02d/%d", dayOfMonth, monthOfYear + 1, year);
+        detailsView.setDateOfBirthLabelText(dateOdBirthText);
+    }
+    //endregion
 }

@@ -33,9 +33,17 @@ public class DetailsViewImpl implements DetailsView {
         ButterKnife.bind(this, activity);
     }
 
-    @OnClick(R.id.view_details_profile_picture_edit) public void onProfilePictureEditClicked() {
+    @OnClick(R.id.view_details_profile_picture_edit)
+    public void onProfilePictureEditClicked() {
         if (listener != null) {
             listener.onProfilePictureEditClicked();
+        }
+    }
+
+    @OnClick(R.id.view_details_date_of_birth)
+    public void onDateOfBirthClicked() {
+        if (listener != null) {
+            listener.onDateOfBirthClicked();
         }
     }
 
@@ -73,6 +81,11 @@ public class DetailsViewImpl implements DetailsView {
     @Override
     public void setProfilePicture(RequestCreator requestCreator) {
         requestCreator.into(profilePictureImageView);
+    }
+
+    @Override
+    public void setDateOfBirthLabelText(CharSequence text) {
+        dateOfBirthTextView.setText(text);
     }
 
     @Override

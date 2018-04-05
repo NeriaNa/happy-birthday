@@ -11,12 +11,14 @@ public interface DetailsView extends MvpView {
         void onDateOfBirthChanged(CharSequence dateOfBirth);
         void onShowBirthdayScreenClicked();
         void onProfilePictureEditClicked();
+        void onDateOfBirthClicked();
     }
 
     CharSequence getFullNameInput();
     CharSequence getDateOfBirthInput();
 
     void setProfilePicture(RequestCreator requestCreator);
+    void setDateOfBirthLabelText(CharSequence text);
     void setShowBirthdayScreenButtonEnabled(boolean enabled);
 
     /**
