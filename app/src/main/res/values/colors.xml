@@ -6,4 +6,7 @@
 
     <item name="blank" type="color">#EFEFEF</item>
     <item name="blankDark" type="color">#e6e5e5</item>
+
+    <item name="share" type="color">#ef7b7b</item>
+    <item name="text" type="color">#3D4965</item>
 </resources>

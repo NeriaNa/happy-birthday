@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".birthday.BirthdayActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/view_birthday_profile_picture_guideline"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.653"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/view_birthday_share_guideline"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.43"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/view_birthday_name_left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/view_birthday_name_right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_profile_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_birthday_profile_picture_guideline"
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_profile_picture_guideline"
+        android:src="@drawable/default_place_holder_yellow"/>
+
+    <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/android_elephant_popup"/>
+
+    <android.support.v7.widget.AppCompatButton android:id="@+id/view_birthday_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_share_guideline"
+        android:drawableRight="@drawable/ic_share_pink"
+        android:drawableEnd="@drawable/ic_share_pink"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingRight="8dp"
+        android:paddingEnd="8dp"
+        android:drawablePadding="4dp"
+        android:text="@string/view_birthday_share"
+        android:textSize="17sp"
+        android:textColor="@color/share"
+        android:inputType="textCapSentences"
+        android:background="@drawable/btn_share"/>
+
+    <android.support.v7.widget.AppCompatTextView android:id="@+id/view_birthday_period_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_share"
+        android:layout_marginBottom="10dp"
+        android:inputType="textCapCharacters"
+        android:textColor="@color/text"
+        android:textSize="26sp"
+        android:text="@string/view_birthday_period_unit_placeholder"/>
+
+    <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_period_unit"
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/a1"/>
+
+    <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_left_swirls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_age"
+        app:layout_constraintTop_toBottomOf="@id/view_birthday_age"
+        app:layout_constraintRight_toLeftOf="@id/view_birthday_age"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:src="@drawable/left_swirls"/>
+
+    <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_right_swirls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_age"
+        app:layout_constraintTop_toBottomOf="@id/view_birthday_age"
+        app:layout_constraintLeft_toRightOf="@id/view_birthday_age"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:src="@drawable/right_swirls"/>
+
+    <views.FontFitTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_age"
+        app:layout_constraintLeft_toRightOf="@id/view_birthday_name_left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/view_birthday_name_right_guideline"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textColor="@color/text"
+        android:maxLines="2"
+        android:text="@string/view_birthday_name_placeholder"/>
+
+</android.support.constraint.ConstraintLayout>

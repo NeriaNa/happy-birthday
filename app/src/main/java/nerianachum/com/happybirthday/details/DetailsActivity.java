@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -21,6 +20,8 @@ import java.util.Locale;
 
 import nerianachum.com.happybirthday.BasePresenter;
 import nerianachum.com.happybirthday.R;
+import nerianachum.com.happybirthday.birthday.BirthdayActivity;
+import pojos.User;
 
 public class DetailsActivity extends BasePresenter
         implements DetailsView.DetailsViewListener,
@@ -76,7 +77,10 @@ public class DetailsActivity extends BasePresenter
 
     @Override
     public void onShowBirthdayScreenClicked() {
-        Toast.makeText(this, "hi", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(DetailsActivity.this, BirthdayActivity.class);
+        User user = new User(detailsView.getFullNameInput().toString(), selectedDateOfBirth, selectedImageUri);
+        intent.putExtra(getString(R.string.user), user);
+        startActivity(intent);
     }
 
     @Override

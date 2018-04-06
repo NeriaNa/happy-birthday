@@ -3,9 +3,15 @@
 
     <string name="profile_picture_uri">profile_picture_uri</string>
     <string name="date_of_birth_date_picker">date_of_birth_date_picker</string>
+    <string name="user">user</string>
 
+    <!-- Views -->
     <string name="view_details_profile_picture">Profile picture</string>
     <string name="view_details_full_name">Full name</string>
     <string name="view_details_date_of_birth">Date of birth</string>
     <string name="view_details_show_birthday_screen">Show birthday screen</string>
+
+    <string name="view_birthday_share">Share the news</string>
+    <string name="view_birthday_period_unit_placeholder">MONTH OLD!</string>
+    <string name="view_birthday_name_placeholder">TODAY NISSIM MIZRACHI EDRI BEN-ZAKAI IS</string>
 </resources>
