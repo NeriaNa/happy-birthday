@@ -81,7 +81,7 @@ public class User implements Parcelable {
         return dateOfBirth;
     }
 
-    public void setText(Calendar dateOfBirth) {
+    public void setDateOfBirth(Calendar dateOfBirth) {
         synchronized (this) {
             this.dateOfBirth = dateOfBirth;
         }
