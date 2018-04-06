@@ -78,7 +78,7 @@ public class DetailsActivity extends BasePresenter
     @Override
     public void onShowBirthdayScreenClicked() {
         Intent intent = new Intent(DetailsActivity.this, BirthdayActivity.class);
-        User user = new User(detailsView.getFullNameInput().toString(), selectedDateOfBirth, selectedImageUri);
+        User user = new User(detailsView.getFullNameInput().toString().trim(), selectedDateOfBirth, selectedImageUri);
         intent.putExtra(getString(R.string.user), user);
         startActivity(intent);
     }
