@@ -2,6 +2,7 @@ package nerianachum.com.happybirthday;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BasePresenter extends AppCompatActivity implements MvpPresenter {
+
+    protected Bundle extras;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        extras = getIntent().getExtras();
+    }
+
     @Override
     public void hideKeyboard() {
         View view = this.getCurrentFocus();

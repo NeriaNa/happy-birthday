@@ -109,7 +109,7 @@
         android:layout_marginStart="14dp"
         android:src="@drawable/right_swirls"/>
 
-    <views.FontFitTextView
+    <views.FontFitTextView android:id="@+id/view_birthday_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/view_birthday_age"
