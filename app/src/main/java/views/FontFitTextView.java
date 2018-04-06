@@ -39,7 +39,7 @@ public class FontFitTextView extends AppCompatTextView {
         String longestLine = text;
         if (getMaxLines() == 2) {
             int lastSpaceIndex = 0;
-            while (text.trim().indexOf(" ", lastSpaceIndex + 1) > -1) {
+            while (text.indexOf(" ", lastSpaceIndex + 1) > -1) {
                 lastSpaceIndex = text.indexOf(" ", lastSpaceIndex + 1);
                 String part1 = text.substring(0, lastSpaceIndex);
                 String part2 = text.substring(lastSpaceIndex + 1);
