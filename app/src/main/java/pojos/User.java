@@ -39,7 +39,8 @@ public class User implements Parcelable {
     public User(Parcel in) {
         fullName = in.readString();
         dateOfBirth = (Calendar) in.readSerializable();
-        profilePicture = Uri.parse(in.readString());
+        String uriString = in.readString();
+        profilePicture = uriString == null? null : Uri.parse(uriString);
     }
     //endregion
 
@@ -57,7 +58,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(fullName);
         dest.writeSerializable(dateOfBirth);
-        dest.writeString(profilePicture.toString());
+        dest.writeString(profilePicture == null ? null : profilePicture.toString());
     }
 
     public int describeContents() {
