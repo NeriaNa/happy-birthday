@@ -64,7 +64,7 @@ public class DetailsActivity extends BasePresenter
         boolean fullNameEmpty = fullName == null || fullName.length() == 0;
         boolean dateOfBirthEmpty = detailsView.getDateOfBirthInput() == null
                 || detailsView.getDateOfBirthInput().length() == 0;
-        detailsView.setShowBirthdayScreenButtonEnabled(!fullNameEmpty || !dateOfBirthEmpty);
+        detailsView.setShowBirthdayScreenButtonEnabled(!fullNameEmpty && !dateOfBirthEmpty);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DetailsActivity extends BasePresenter
         boolean fullNameEmpty = detailsView.getFullNameInput() == null
                 || detailsView.getFullNameInput().length() == 0;
         boolean dateOfBirthEmpty = dateOfBirth == null || dateOfBirth.length() == 0;
-        detailsView.setShowBirthdayScreenButtonEnabled(!fullNameEmpty || !dateOfBirthEmpty);
+        detailsView.setShowBirthdayScreenButtonEnabled(!fullNameEmpty && !dateOfBirthEmpty);
     }
 
     @Override
