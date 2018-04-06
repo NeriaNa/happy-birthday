@@ -26,7 +26,7 @@ public class BirthdayActivity extends BasePresenter {
 
         user = super.extras.getParcelable(getString(R.string.user));
         if (user != null) {
-            birthdayView.setNameLabelText("TODAY " + user.getFullName().toUpperCase() + " IS");
+            birthdayView.setNameLabelText(getString(R.string.view_birthday_name, user.getFullName().toUpperCase()));
         }
 
         Random r = new Random();

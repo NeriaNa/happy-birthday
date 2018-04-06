@@ -14,4 +14,5 @@
     <string name="view_birthday_share">Share the news</string>
     <string name="view_birthday_period_unit_placeholder">MONTH OLD!</string>
     <string name="view_birthday_name_placeholder">TODAY NISSIM MIZRACHI EDRI BEN-ZAKAI IS</string>
+    <string name="view_birthday_name">TODAY %1$s IS</string>
 </resources>
