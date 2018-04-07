@@ -13,11 +13,13 @@ import com.squareup.picasso.RequestCreator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import nerianachum.com.happybirthday.R;
 
 public class BirthdayViewImpl implements BirthdayView {
 
     private View rootView;
+    private BirthdayViewListener listener;
 
     @BindView(R.id.view_birthday_name) AppCompatTextView nameTextView;
     @BindView(R.id.view_birthday_profile_picture) AppCompatImageView profilePictureImageView;
@@ -25,6 +27,13 @@ public class BirthdayViewImpl implements BirthdayView {
     @BindView(R.id.view_birthday_age1) AppCompatImageView ageDigit1ImageView;
     @BindView(R.id.view_birthday_age2) AppCompatImageView ageDigit2ImageView;
     @BindView(R.id.view_birthday_period_unit) AppCompatTextView periodUnitTextView;
+
+    @OnClick(R.id.view_birthday_back)
+    public void onBackButtonClicked() {
+        if (listener != null) {
+            listener.onBackButtonClicked();
+        }
+    }
 
     public BirthdayViewImpl(LayoutInflater inflater, ViewGroup container, Activity activity) {
         rootView = inflater.inflate(R.layout.activity_birthday, container, false);
@@ -60,6 +69,11 @@ public class BirthdayViewImpl implements BirthdayView {
     @Override
     public void setAgeUnitLabelText(CharSequence text) {
         periodUnitTextView.setText(text);
+    }
+
+    @Override
+    public void setListener(BirthdayViewListener listener) {
+        this.listener = listener;
     }
 
     @Override

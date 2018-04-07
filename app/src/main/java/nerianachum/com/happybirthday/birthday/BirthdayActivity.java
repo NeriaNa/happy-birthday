@@ -17,7 +17,7 @@ import pojos.User;
 import utils.CalendarUtils;
 import utils.ResourcesUtils;
 
-public class BirthdayActivity extends BasePresenter {
+public class BirthdayActivity extends BasePresenter implements BirthdayView.BirthdayViewListener {
 
     private BirthdayView birthdayView;
     private User user;
@@ -28,6 +28,7 @@ public class BirthdayActivity extends BasePresenter {
         setContentView(R.layout.activity_birthday);
 
         birthdayView = new BirthdayViewImpl(LayoutInflater.from(this), null, this);
+        birthdayView.setListener(this);
 
         user = super.extras.getParcelable(getString(R.string.user));
         if (user != null) {
@@ -75,5 +76,10 @@ public class BirthdayActivity extends BasePresenter {
 
         String periodUnit = ResourcesUtils.getAgeUnitStringForAge(this, ageInMonths);
         birthdayView.setAgeUnitLabelText(getString(R.string.view_birthday_period_unit, periodUnit));
+    }
+
+    @Override
+    public void onBackButtonClicked() {
+        supportFinishAfterTransition();
     }
 }
