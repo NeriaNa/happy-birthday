@@ -12,6 +12,8 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.App;
+
 public abstract class BasePresenter extends AppCompatActivity implements MvpPresenter {
 
     protected Bundle extras;
@@ -20,6 +22,11 @@ public abstract class BasePresenter extends AppCompatActivity implements MvpPres
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         extras = getIntent().getExtras();
+    }
+
+    @Override
+    public App getApp() {
+        return (App) getApplicationContext();
     }
 
     @Override

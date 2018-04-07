@@ -44,4 +44,7 @@ dependencies {
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
     implementation 'com.wdullaer:materialdatetimepicker:3.5.2'
+    implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+
 }

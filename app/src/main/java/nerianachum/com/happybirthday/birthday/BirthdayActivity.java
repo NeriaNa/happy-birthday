@@ -12,6 +12,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
+import javax.inject.Inject;
+
 import nerianachum.com.happybirthday.BasePresenter;
 import nerianachum.com.happybirthday.R;
 import pojos.User;
@@ -23,10 +25,14 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
     private BirthdayView birthdayView;
     private User user;
 
+    @Inject Random random;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday);
+
+        getApp().getAppComponent().presenterComponent().inject(this);
 
         birthdayView = new BirthdayViewImpl(LayoutInflater.from(this), null, this);
         birthdayView.setListener(this);
@@ -57,8 +63,7 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
     }
 
     private void setRandomDesign(com.squareup.picasso.Callback callback) {
-        Random r = new Random();
-        int layoutVersion = r.nextInt(3);
+        int layoutVersion = random.nextInt(3);
 
         @DrawableRes int background, profilePicturePlaceholder;
         switch (layoutVersion) {
