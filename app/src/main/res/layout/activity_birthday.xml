@@ -76,7 +76,7 @@
         android:layout_marginBottom="10dp"
         android:inputType="textCapCharacters"
         android:textColor="@color/text"
-        android:textSize="26sp"
+        android:textSize="@dimen/view_birthday_text_size"
         android:text="@string/view_birthday_period_unit_placeholder"/>
 
     <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_age1"
@@ -131,10 +131,10 @@
         app:layout_constraintLeft_toRightOf="@id/view_birthday_name_left_guideline"
         app:layout_constraintRight_toLeftOf="@id/view_birthday_name_right_guideline"
         android:textAlignment="center"
-        android:textSize="26sp"
+        android:textSize="@dimen/view_birthday_text_size"
         android:textColor="@color/text"
         android:maxLines="2"
-        app:autoSizeMaxTextSize="26sp"
+        app:autoSizeMaxTextSize="@dimen/view_birthday_text_size"
         app:autoSizeTextType="uniform"
         android:text="@string/view_birthday_name_placeholder"/>
 
