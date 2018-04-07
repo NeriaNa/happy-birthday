@@ -78,6 +78,11 @@ public class BirthdayViewImpl implements BirthdayView {
     }
 
     @Override
+    public void setProfilePictureVisibility(int visibility) {
+        profilePictureImageView.setVisibility(visibility);
+    }
+
+    @Override
     public void setSwirlsVisibility(int visibility) {
         leftSwirlsImageView.setVisibility(visibility);
         rightSwirlsImageView.setVisibility(visibility);

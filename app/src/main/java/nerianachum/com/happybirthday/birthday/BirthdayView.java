@@ -21,6 +21,7 @@ public interface BirthdayView extends MvpView {
                       com.squareup.picasso.Callback callback);
     void setAgeUnitLabelText(CharSequence text);
 
+    void setProfilePictureVisibility(int visibility);
     void setSwirlsVisibility(int visibility);
     void setPeriodUnitLabelVisibility(int visibility);
     void setNameLabelVisibility(int visibility);

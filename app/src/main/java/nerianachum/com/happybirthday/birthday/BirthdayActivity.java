@@ -42,16 +42,16 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
             birthdayView.setNameLabelText(getString(R.string.view_birthday_name, user.getFullName().toUpperCase()));
         }
 
-        setRandomDesign(new com.squareup.picasso.Callback() {
+        int layoutVersion = random.nextInt(3);
+
+        birthdayView.setProfilePictureVisibility(View.GONE);
+        setBackground(layoutVersion, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
                 /*
-                 * Start loading profile picture only when background is loaded, to make sure it
-                 * doesn't show up before background
+                 * Profile picture is hidden until background is loaded to avoid "odd" loading
                  */
-                if (user.getProfilePicture() != null) {
-                    birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(user.getProfilePicture()));
-                }
+                birthdayView.setProfilePictureVisibility(View.VISIBLE);
             }
 
             @Override
@@ -59,30 +59,43 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
 
             }
         });
+        setProfilePicture(layoutVersion);
         setAgeViews();
     }
 
-    private void setRandomDesign(com.squareup.picasso.Callback callback) {
-        int layoutVersion = random.nextInt(3);
-
-        @DrawableRes int background, profilePicturePlaceholder;
+    private void setBackground(int layoutVersion, com.squareup.picasso.Callback callback) {
+        @DrawableRes int background;
         switch (layoutVersion) {
             case 0:
                 background = R.drawable.android_elephant_popup;
-                profilePicturePlaceholder = R.drawable.default_place_holder_yellow;
                 break;
             case 1:
                 background = R.drawable.android_fox_popup;
-                profilePicturePlaceholder = R.drawable.default_place_holder_green;
                 break;
             default:
                 background = R.drawable.android_pelican_popup;
-                profilePicturePlaceholder = R.drawable.default_place_holder_blue;
                 break;
         }
 
         birthdayView.setBackground(Picasso.with(this).load(background), callback);
-        if (user.getProfilePicture() == null) {
+    }
+
+    private void setProfilePicture(int layoutVersion) {
+        if (user.getProfilePicture() != null) {
+            birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(user.getProfilePicture()));
+        } else {
+            @DrawableRes int profilePicturePlaceholder;
+            switch (layoutVersion) {
+                case 0:
+                    profilePicturePlaceholder = R.drawable.default_place_holder_yellow;
+                    break;
+                case 1:
+                    profilePicturePlaceholder = R.drawable.default_place_holder_green;
+                    break;
+                default:
+                    profilePicturePlaceholder = R.drawable.default_place_holder_blue;
+                    break;
+            }
             birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(profilePicturePlaceholder));
         }
     }
@@ -92,8 +105,8 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
         birthdayView.setPeriodUnitLabelVisibility(View.GONE);
         birthdayView.setNameLabelVisibility(View.GONE);
         birthdayView.setShareButtonVisibility(View.GONE);
+        
         int ageInMonths = CalendarUtils.getTimeDifferenceInMonths(user.getDateOfBirth(), Calendar.getInstance());
-
         List<Integer> digitsDrawables = ResourcesUtils.getDigitDrawablesForAge(this, ageInMonths);
         RequestCreator digit1RequestCreator = digitsDrawables.get(0) == 0
                 ? null : Picasso.with(this).load(digitsDrawables.get(0));
