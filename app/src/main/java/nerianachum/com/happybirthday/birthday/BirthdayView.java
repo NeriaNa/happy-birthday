@@ -14,10 +14,17 @@ public interface BirthdayView extends MvpView {
     }
 
     void setNameLabelText(CharSequence text);
-    void setBackground(@NonNull RequestCreator requestCreator);
+    void setBackground(@NonNull RequestCreator requestCreator, com.squareup.picasso.Callback callback);
     void setProfilePicture(@NonNull RequestCreator requestCreator);
-    void setAgeImages(@Nullable RequestCreator digit1RequestCreator, @NonNull RequestCreator digit2RequestCreator);
+    void setAgeImages(@Nullable RequestCreator digit1RequestCreator,
+                      @NonNull RequestCreator digit2RequestCreator,
+                      com.squareup.picasso.Callback callback);
     void setAgeUnitLabelText(CharSequence text);
+
+    void setSwirlsVisibility(int visibility);
+    void setPeriodUnitLabelVisibility(int visibility);
+    void setNameLabelVisibility(int visibility);
+    void setShareButtonVisibility(int visibility);
 
     /**
      * Set a listener that will be notified by this view

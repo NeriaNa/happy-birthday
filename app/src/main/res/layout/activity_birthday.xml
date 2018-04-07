@@ -40,8 +40,7 @@
         app:layout_constraintLeft_toRightOf="@id/view_birthday_name_left_guideline"
         app:layout_constraintRight_toLeftOf="@id/view_birthday_name_right_guideline"
         app:layout_constraintTop_toBottomOf="@id/view_birthday_profile_picture_guideline"
-        app:layout_constraintBottom_toTopOf="@id/view_birthday_profile_picture_guideline"
-        android:src="@drawable/default_place_holder_yellow"/>
+        app:layout_constraintBottom_toTopOf="@id/view_birthday_profile_picture_guideline" />
 
     <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_background"
         android:layout_width="match_parent"
@@ -91,7 +90,7 @@
         app:layout_goneMarginRight="0dp"
         app:layout_goneMarginEnd="0dp"
         android:layout_marginEnd="6dp"
-        android:src="@drawable/a2"/>
+        android:visibility="gone"/>
 
     <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_age2"
         android:layout_width="wrap_content"

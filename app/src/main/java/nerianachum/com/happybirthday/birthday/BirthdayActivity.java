@@ -3,6 +3,7 @@ package nerianachum.com.happybirthday.birthday;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
+import android.view.View;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -35,11 +36,27 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
             birthdayView.setNameLabelText(getString(R.string.view_birthday_name, user.getFullName().toUpperCase()));
         }
 
-        setRandomDesign();
+        setRandomDesign(new com.squareup.picasso.Callback() {
+            @Override
+            public void onSuccess() {
+                /*
+                 * Start loading profile picture only when background is loaded, to make sure it
+                 * doesn't show up before background
+                 */
+                if (user.getProfilePicture() != null) {
+                    birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(user.getProfilePicture()));
+                }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
         setAgeViews();
     }
 
-    private void setRandomDesign() {
+    private void setRandomDesign(com.squareup.picasso.Callback callback) {
         Random r = new Random();
         int layoutVersion = r.nextInt(3);
 
@@ -58,21 +75,39 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
                 profilePicturePlaceholder = R.drawable.default_place_holder_blue;
                 break;
         }
-        if (user.getProfilePicture() != null) {
-            birthdayView.setProfilePicture(Picasso.with(this).load(user.getProfilePicture()));
-        } else {
-            birthdayView.setProfilePicture(Picasso.with(this).load(profilePicturePlaceholder));
+
+        birthdayView.setBackground(Picasso.with(this).load(background), callback);
+        if (user.getProfilePicture() == null) {
+            birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(profilePicturePlaceholder));
         }
-        birthdayView.setBackground(Picasso.with(this).load(background));
     }
 
     private void setAgeViews() {
+        birthdayView.setSwirlsVisibility(View.GONE);
+        birthdayView.setPeriodUnitLabelVisibility(View.GONE);
+        birthdayView.setNameLabelVisibility(View.GONE);
+        birthdayView.setShareButtonVisibility(View.GONE);
         int ageInMonths = CalendarUtils.getTimeDifferenceInMonths(user.getDateOfBirth(), Calendar.getInstance());
 
         List<Integer> digitsDrawables = ResourcesUtils.getDigitDrawablesForAge(this, ageInMonths);
-        RequestCreator digit1RequestCreator = digitsDrawables.get(0) == 0 ? null : Picasso.with(this).load(digitsDrawables.get(0));
+        RequestCreator digit1RequestCreator = digitsDrawables.get(0) == 0
+                ? null : Picasso.with(this).load(digitsDrawables.get(0));
         RequestCreator digit2RequestCreator = Picasso.with(this).load(digitsDrawables.get(1));
-        birthdayView.setAgeImages(digit1RequestCreator, digit2RequestCreator);
+        birthdayView.setAgeImages(digit1RequestCreator, digit2RequestCreator,
+                new com.squareup.picasso.Callback() {
+            @Override
+            public void onSuccess() {
+                birthdayView.setSwirlsVisibility(View.VISIBLE);
+                birthdayView.setPeriodUnitLabelVisibility(View.VISIBLE);
+                birthdayView.setNameLabelVisibility(View.VISIBLE);
+                birthdayView.setShareButtonVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
 
         String periodUnit = ResourcesUtils.getAgeUnitStringForAge(this, ageInMonths);
         birthdayView.setAgeUnitLabelText(getString(R.string.view_birthday_period_unit, periodUnit));
