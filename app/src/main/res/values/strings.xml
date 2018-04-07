@@ -12,7 +12,13 @@
     <string name="view_details_show_birthday_screen">Show birthday screen</string>
 
     <string name="view_birthday_share">Share the news</string>
-    <string name="view_birthday_period_unit_placeholder">MONTH OLD!</string>
+    <string name="view_birthday_period_unit_placeholder">YEARS OLD!</string>
     <string name="view_birthday_name_placeholder">TODAY NISSIM MIZRACHI EDRI BEN-ZAKAI IS</string>
+    <string name="view_birthday_period_unit">%1$s OLD!</string>
     <string name="view_birthday_name">TODAY %1$s IS</string>
+    <string name="view_birthday_month">MONTH</string>
+    <string name="view_birthday_months">MONTHS</string>
+    <string name="view_birthday_year">YEAR</string>
+    <string name="view_birthday_years">YEARS</string>
+
 </resources>
