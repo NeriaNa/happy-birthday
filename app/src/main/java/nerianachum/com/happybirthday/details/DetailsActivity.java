@@ -94,6 +94,7 @@ public class DetailsActivity extends BasePresenter
                 selectedDateOfBirth != null ? selectedDateOfBirth : Calendar.getInstance()
         );
         dpd.vibrate(false);
+        dpd.setMaxDate(Calendar.getInstance());
         dpd.setVersion(DatePickerDialog.Version.VERSION_1);
         dpd.showYearPickerFirst(true);
         dpd.setTitle("Date of birth");
