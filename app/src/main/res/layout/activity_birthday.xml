@@ -35,10 +35,10 @@
         app:layout_constraintGuide_percent="0.85" />
 
     <android.support.v7.widget.AppCompatImageView android:id="@+id/view_birthday_profile_picture"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/view_birthday_name_left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/view_birthday_name_right_guideline"
         app:layout_constraintTop_toBottomOf="@id/view_birthday_profile_picture_guideline"
         app:layout_constraintBottom_toTopOf="@id/view_birthday_profile_picture_guideline"
         android:src="@drawable/default_place_holder_yellow"/>
