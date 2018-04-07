@@ -97,7 +97,7 @@ public class DetailsActivity extends BasePresenter
         dpd.setMaxDate(Calendar.getInstance());
         dpd.setVersion(DatePickerDialog.Version.VERSION_1);
         dpd.showYearPickerFirst(true);
-        dpd.setTitle("Date of birth");
+        dpd.setTitle(getString(R.string.view_details_date_of_birth));
 
         dpd.show(getFragmentManager(), getString(R.string.date_of_birth_date_picker));
     }
