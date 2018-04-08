@@ -27,11 +27,45 @@ public class CalendarUtilsTest {
     private CalendarUtils calendarUtils;
 
     @Test
-    public void getTimeDifferenceInMonths_endTimeBeforeStartTime_swapsInputs() {
+    public void getTimeDifferenceInMonths_plus12Months_returns12() {
         Calendar startTime = Calendar.getInstance();
         Calendar endTime = ((Calendar)startTime.clone());
-        startTime.add(Calendar.MONTH, 1);
+        endTime.add(Calendar.MONTH, 12);
+        int result = calendarUtils.getTimeDifferenceInMonths(startTime, endTime);
+        assertEquals(12, result);
+    }
+    @Test
+    public void getTimeDifferenceInMonths_minus1Month_swapsInputs_returns1() {
+        Calendar startTime = Calendar.getInstance();
+        Calendar endTime = ((Calendar)startTime.clone());
+        endTime.add(Calendar.MONTH, -1);
         int result = calendarUtils.getTimeDifferenceInMonths(startTime, endTime);
         assertEquals(1, result);
+    }
+
+    @Test
+    public void getTimeDifferenceInMonths_startTimeEqualsEndTime_returns0() {
+        Calendar startTime = Calendar.getInstance();
+        Calendar endTime = ((Calendar)startTime.clone());
+        int result = calendarUtils.getTimeDifferenceInMonths(startTime, endTime);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void getTimeDifferenceInMonths_plusOneDate_returns0() {
+        Calendar startTime = Calendar.getInstance();
+        Calendar endTime = ((Calendar)startTime.clone());
+        endTime.add(Calendar.DATE, 1);
+        int result = calendarUtils.getTimeDifferenceInMonths(startTime, endTime);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void getTimeDifferenceInMonths_minusOneDate_returns0() {
+        Calendar startTime = Calendar.getInstance();
+        Calendar endTime = ((Calendar)startTime.clone());
+        endTime.add(Calendar.DATE, -1);
+        int result = calendarUtils.getTimeDifferenceInMonths(startTime, endTime);
+        assertEquals(0, result);
     }
 }
