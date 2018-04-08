@@ -1,5 +1,7 @@
 package nerianachum.com.happybirthday.utils;
 
+import android.support.annotation.StringRes;
+
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -7,6 +9,7 @@ import app.App;
 import di.modules.AppModule;
 import di.modules.UtilitiesModule;
 import it.cosenonjaviste.daggermock.DaggerMockRule;
+import nerianachum.com.happybirthday.R;
 import nerianachum.com.happybirthday.di.components.TestAppComponent;
 import utils.ResourcesUtils;
 
@@ -85,5 +88,38 @@ public class ResourcesUtilsTest {
         String[] digitsDrawables = resourcesUtils.getDigitDrawablesForAge(31415926);
         assertEquals("a9", digitsDrawables[0]);
         assertEquals("a9", digitsDrawables[1]);
+    }
+
+
+
+
+    @Test
+    public void getAgeUnitStringForAge_1_returnsMonth() {
+        @StringRes int ageUnit = resourcesUtils.getAgeUnitStringForAge(1);
+        assertEquals(R.string.view_birthday_month, ageUnit);
+    }
+
+    @Test
+    public void getAgeUnitStringForAge_2_returnsMonths() {
+        @StringRes int ageUnit = resourcesUtils.getAgeUnitStringForAge(2);
+        assertEquals(R.string.view_birthday_months, ageUnit);
+    }
+
+    @Test
+    public void getAgeUnitStringForAge_12_returnsYear() {
+        @StringRes int ageUnit = resourcesUtils.getAgeUnitStringForAge(12);
+        assertEquals(R.string.view_birthday_year, ageUnit);
+    }
+
+    @Test
+    public void getAgeUnitStringForAge_18_returnsYears() {
+        @StringRes int ageUnit = resourcesUtils.getAgeUnitStringForAge(18);
+        assertEquals(R.string.view_birthday_years, ageUnit);
+    }
+
+    @Test
+    public void getAgeUnitStringForAge_24_returnsYears() {
+        @StringRes int ageUnit = resourcesUtils.getAgeUnitStringForAge(24);
+        assertEquals(R.string.view_birthday_years, ageUnit);
     }
 }
