@@ -35,7 +35,6 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
         setContentView(R.layout.activity_birthday);
 
         getApp().getAppComponent().presenterComponent().inject(this);
-
         birthdayView = new BirthdayViewImpl(LayoutInflater.from(this), null, this);
         birthdayView.setListener(this);
 
@@ -44,15 +43,19 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
             birthdayView.setNameLabelText(getString(R.string.view_birthday_name, user.getFullName().toUpperCase()));
         }
 
-        birthdayView.setProfilePictureVisibility(View.GONE);
         int layoutVersion = random.nextInt(3);
+        if (user.getProfilePicture() == null) {
+            setProfilePicturePlaceholder(layoutVersion);
+        }
         setBackground(layoutVersion, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
                 /*
-                 * Profile picture is hidden until background is loaded to avoid "odd" loading
+                 * Profile picture starts loading only when background is set to avoid "odd" loading
                  */
-                birthdayView.setProfilePictureVisibility(View.VISIBLE);
+                if (user.getProfilePicture() != null) {
+                    setProfilePicture();
+                }
             }
 
             @Override
@@ -60,7 +63,7 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
 
             }
         });
-        setProfilePicture(layoutVersion);
+
         setAgeViews();
     }
 
@@ -69,13 +72,13 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
         birthdayView.setBackground(Picasso.with(this).load(background), callback);
     }
 
-    private void setProfilePicture(int layoutVersion) {
-        if (user.getProfilePicture() != null) {
-            birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(user.getProfilePicture()));
-        } else {
-            @DrawableRes int profilePicturePlaceholder = resourcesUtils.getDefaultPlaceholderForVersion(layoutVersion);
-            birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(profilePicturePlaceholder));
-        }
+    private void setProfilePicture() {
+        birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(user.getProfilePicture()));
+    }
+
+    private void setProfilePicturePlaceholder(int layoutVersion) {
+        @DrawableRes int profilePicturePlaceholder = resourcesUtils.getDefaultPlaceholderForVersion(layoutVersion);
+        birthdayView.setProfilePicture(Picasso.with(BirthdayActivity.this).load(profilePicturePlaceholder));
     }
 
     private void setAgeViews() {
