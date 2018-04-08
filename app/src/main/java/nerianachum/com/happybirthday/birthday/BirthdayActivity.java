@@ -81,10 +81,10 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
     }
 
     private void setAgeViews() {
-        birthdayView.setSwirlsVisibility(View.GONE);
-        birthdayView.setPeriodUnitLabelVisibility(View.GONE);
-        birthdayView.setNameLabelVisibility(View.GONE);
-        birthdayView.setShareButtonVisibility(View.GONE);
+        birthdayView.setSwirlsVisibility(View.INVISIBLE);
+        birthdayView.setPeriodUnitLabelVisibility(View.INVISIBLE);
+        birthdayView.setNameLabelVisibility(View.INVISIBLE);
+        birthdayView.setShareButtonVisibility(View.INVISIBLE);
         
         int ageInMonths = calendarUtils.getTimeDifferenceInMonths(user.getDateOfBirth(), Calendar.getInstance());
         String[] digitsDrawableIds = resourcesUtils.getDigitDrawablesForAge(ageInMonths);
