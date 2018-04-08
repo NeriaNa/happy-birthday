@@ -1,8 +1,7 @@
 package utils;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 
 import nerianachum.com.happybirthday.R;
 
@@ -11,46 +10,43 @@ import nerianachum.com.happybirthday.R;
  */
 public final class ResourcesUtils {
 
-    private Context context;
-
-    public ResourcesUtils(Context context) {
-        this.context = context;
+    public ResourcesUtils() {
     }
 
-    public @DrawableRes int[] getDigitDrawablesForAge(int ageInMonths) {
-        Resources res = context.getResources();
-        String packageName = context.getPackageName();
-        @DrawableRes int digit1DrawableId = 0, digit2DrawableId;
-        if (ageInMonths < 12) {
+    public String[] getDigitDrawablesForAge(int ageInMonths) {
+        String digit1DrawableId = null, digit2DrawableId;
+        if (ageInMonths < 0) {
+            digit2DrawableId = "a0";
+        } else if (ageInMonths < 12) {
             if (ageInMonths / 10 > 0) {
-                digit1DrawableId = res.getIdentifier("a" + ageInMonths / 10, "drawable", packageName);
+                digit1DrawableId = "a" + ageInMonths / 10;
             }
-            digit2DrawableId = res.getIdentifier("a" + ageInMonths % 10, "drawable", packageName);
+            digit2DrawableId = "a" + ageInMonths % 10;
         } else if (ageInMonths >= 18 && ageInMonths < 24) {
-            digit2DrawableId = res.getIdentifier("a1_half", "drawable", packageName);
+            digit2DrawableId = "a1_half";
         } else if (ageInMonths >= 100 * 12) {
-            digit1DrawableId = res.getIdentifier("a9", "drawable", packageName);
-            digit2DrawableId = res.getIdentifier("a9", "drawable", packageName);
+            digit1DrawableId = "a9";
+            digit2DrawableId = "a9";
         } else {
             if (ageInMonths / 12 / 10 > 0) {
-                digit1DrawableId = res.getIdentifier("a" + ageInMonths / 12 / 10, "drawable", packageName);
+                digit1DrawableId = "a" + ageInMonths / 12 / 10;
             }
-            digit2DrawableId = res.getIdentifier("a" + ageInMonths / 12 % 10, "drawable", packageName);
+            digit2DrawableId = "a" + ageInMonths / 12 % 10;
         }
 
-        return new int[]{digit1DrawableId, digit2DrawableId};
+        return new String[]{digit1DrawableId, digit2DrawableId};
     }
 
-    public String getAgeUnitStringForAge(int ageInMonths) {
-        String periodUnit;
+    public @StringRes int getAgeUnitStringForAge(int ageInMonths) {
+        @StringRes int periodUnit;
         if (ageInMonths == 1) {
-            periodUnit = context.getString(R.string.view_birthday_month);
+            periodUnit = R.string.view_birthday_month;
         } else if (ageInMonths < 12) {
-            periodUnit = context.getString(R.string.view_birthday_months);
+            periodUnit = R.string.view_birthday_months;
         } else if (ageInMonths < 18) {
-            periodUnit = context.getString(R.string.view_birthday_year);
+            periodUnit = R.string.view_birthday_year;
         } else {
-            periodUnit = context.getString(R.string.view_birthday_years);
+            periodUnit = R.string.view_birthday_years;
         }
 
         return periodUnit;

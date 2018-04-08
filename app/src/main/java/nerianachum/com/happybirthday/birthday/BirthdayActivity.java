@@ -87,10 +87,17 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
         birthdayView.setShareButtonVisibility(View.GONE);
         
         int ageInMonths = calendarUtils.getTimeDifferenceInMonths(user.getDateOfBirth(), Calendar.getInstance());
-        int[] digitsDrawables = resourcesUtils.getDigitDrawablesForAge(ageInMonths);
-        RequestCreator digit1RequestCreator = digitsDrawables[0] == 0
-                ? null : Picasso.with(this).load(digitsDrawables[0]);
-        RequestCreator digit2RequestCreator = Picasso.with(this).load(digitsDrawables[1]);
+        String[] digitsDrawableIds = resourcesUtils.getDigitDrawablesForAge(ageInMonths);
+
+        RequestCreator digit1RequestCreator = null;
+        if (digitsDrawableIds[0] != null) {
+            @DrawableRes int digit1Drawable = getResources()
+                    .getIdentifier(digitsDrawableIds[0], "drawable", getPackageName());
+            digit1RequestCreator = Picasso.with(this).load(digit1Drawable);
+        }
+        @DrawableRes int digit2Drawable = getResources()
+                .getIdentifier(digitsDrawableIds[1], "drawable", getPackageName());
+        RequestCreator digit2RequestCreator = Picasso.with(this).load(digit2Drawable);
         birthdayView.setAgeImages(digit1RequestCreator, digit2RequestCreator,
                 new com.squareup.picasso.Callback() {
             @Override
@@ -107,7 +114,7 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
             }
         });
 
-        String periodUnit = resourcesUtils.getAgeUnitStringForAge(ageInMonths);
+        String periodUnit = getString(resourcesUtils.getAgeUnitStringForAge(ageInMonths));
         birthdayView.setAgeUnitLabelText(getString(R.string.view_birthday_period_unit, periodUnit));
     }
 

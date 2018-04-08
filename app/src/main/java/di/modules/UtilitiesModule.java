@@ -1,7 +1,5 @@
 package di.modules;
 
-import android.app.Application;
-
 import java.util.Random;
 
 import javax.inject.Singleton;
@@ -21,8 +19,8 @@ public class UtilitiesModule {
 
     @Provides
     @Singleton
-    public ResourcesUtils provideResourcesUtils(Application application) {
-        return new ResourcesUtils(application);
+    public ResourcesUtils provideResourcesUtils() {
+        return new ResourcesUtils();
     }
 
     @Provides

@@ -7,9 +7,11 @@ import di.components.AppComponent;
 import di.modules.AppModule;
 import di.modules.UtilitiesModule;
 import utils.CalendarUtils;
+import utils.ResourcesUtils;
 
 @Singleton
 @Component(modules = {AppModule.class, UtilitiesModule.class})
 public interface TestAppComponent extends AppComponent {
     CalendarUtils calendarUtils();
+    ResourcesUtils resourcesUtils();
 }
