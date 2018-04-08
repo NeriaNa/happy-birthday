@@ -36,19 +36,20 @@ dependencies {
     testImplementation 'com.github.fabioCollini.daggermock:daggermock:0.8.4'
     testImplementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testingSupportLibraryVersion"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.testingSupportLibraryVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
 
     //Tools
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
 
     //External views
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
     implementation 'com.wdullaer:materialdatetimepicker:3.5.2'
-    implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
 
 }
