@@ -2,13 +2,16 @@ package utils;
 
 import java.util.Calendar;
 
+/*
+ * Utility class for calculations related to date and time
+ */
 public final class CalendarUtils {
 
-    private CalendarUtils() {
+    public CalendarUtils() {
 
     }
 
-    public static int getTimeDifferenceInYears(Calendar startTime, Calendar endTime) {
+    public int getTimeDifferenceInYears(Calendar startTime, Calendar endTime) {
         if (startTime.after(endTime)) {
             Calendar tempCalendar = startTime;
             startTime = endTime;
@@ -23,7 +26,7 @@ public final class CalendarUtils {
         return years;
     }
 
-    public static int getTimeDifferenceInMonths(Calendar startTime, Calendar endTime) {
+    public int getTimeDifferenceInMonths(Calendar startTime, Calendar endTime) {
         if (startTime.after(endTime)) {
             Calendar tempCalendar = startTime;
             startTime = endTime;
