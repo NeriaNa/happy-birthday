@@ -9,7 +9,6 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -88,10 +87,10 @@ public class BirthdayActivity extends BasePresenter implements BirthdayView.Birt
         birthdayView.setShareButtonVisibility(View.GONE);
         
         int ageInMonths = calendarUtils.getTimeDifferenceInMonths(user.getDateOfBirth(), Calendar.getInstance());
-        List<Integer> digitsDrawables = resourcesUtils.getDigitDrawablesForAge(ageInMonths);
-        RequestCreator digit1RequestCreator = digitsDrawables.get(0) == 0
-                ? null : Picasso.with(this).load(digitsDrawables.get(0));
-        RequestCreator digit2RequestCreator = Picasso.with(this).load(digitsDrawables.get(1));
+        int[] digitsDrawables = resourcesUtils.getDigitDrawablesForAge(ageInMonths);
+        RequestCreator digit1RequestCreator = digitsDrawables[0] == 0
+                ? null : Picasso.with(this).load(digitsDrawables[0]);
+        RequestCreator digit2RequestCreator = Picasso.with(this).load(digitsDrawables[1]);
         birthdayView.setAgeImages(digit1RequestCreator, digit2RequestCreator,
                 new com.squareup.picasso.Callback() {
             @Override

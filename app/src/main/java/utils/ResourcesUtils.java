@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.DrawableRes;
 
-import java.util.Arrays;
-import java.util.List;
-
 import nerianachum.com.happybirthday.R;
 
 /*
@@ -20,7 +17,7 @@ public final class ResourcesUtils {
         this.context = context;
     }
 
-    public List<Integer> getDigitDrawablesForAge(int ageInMonths) {
+    public @DrawableRes int[] getDigitDrawablesForAge(int ageInMonths) {
         Resources res = context.getResources();
         String packageName = context.getPackageName();
         @DrawableRes int digit1DrawableId = 0, digit2DrawableId;
@@ -41,7 +38,7 @@ public final class ResourcesUtils {
             digit2DrawableId = res.getIdentifier("a" + ageInMonths / 12 % 10, "drawable", packageName);
         }
 
-        return Arrays.asList(digit1DrawableId, digit2DrawableId);
+        return new int[]{digit1DrawableId, digit2DrawableId};
     }
 
     public String getAgeUnitStringForAge(int ageInMonths) {
