@@ -27,6 +27,20 @@ public class CalendarUtilsTest {
     private CalendarUtils calendarUtils;
 
     @Test
+    public void getTimeDifferenceInMonths_nullStartTime_returns0() {
+        Calendar endTime = Calendar.getInstance();
+        int result = calendarUtils.getTimeDifferenceInMonths(null, endTime);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void getTimeDifferenceInMonths_nullendTime_returns0() {
+        Calendar startTime = Calendar.getInstance();
+        int result = calendarUtils.getTimeDifferenceInMonths(startTime, null);
+        assertEquals(0, result);
+    }
+
+    @Test
     public void getTimeDifferenceInMonths_plus12Months_returns12() {
         Calendar startTime = Calendar.getInstance();
         Calendar endTime = ((Calendar)startTime.clone());

@@ -12,6 +12,10 @@ public final class CalendarUtils {
     }
 
     public int getTimeDifferenceInYears(Calendar startTime, Calendar endTime) {
+        if (startTime == null || endTime == null) {
+            return 0;
+        }
+
         if (startTime.after(endTime)) {
             Calendar tempCalendar = startTime;
             startTime = endTime;
@@ -27,6 +31,10 @@ public final class CalendarUtils {
     }
 
     public int getTimeDifferenceInMonths(Calendar startTime, Calendar endTime) {
+        if (startTime == null || endTime == null) {
+            return 0;
+        }
+
         if (startTime.after(endTime)) {
             Calendar tempCalendar = startTime;
             startTime = endTime;
