@@ -2,6 +2,7 @@
     <string name="app_name">Happy Birthday</string>
 
     <string name="profile_picture_uri">profile_picture_uri</string>
+    <string name="selected_date_of_birth">selected_date_of_birth</string>
     <string name="date_of_birth_date_picker">date_of_birth_date_picker</string>
     <string name="user">user</string>
 

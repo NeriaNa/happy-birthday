@@ -48,6 +48,7 @@ public class DetailsActivity extends BasePresenter
                 selectedImageUri = Uri.parse(restoredSelectedImageUri);
                 detailsView.setProfilePicture(Picasso.with(this).load(selectedImageUri));
             }
+            selectedDateOfBirth = (Calendar) savedInstanceState.getSerializable(getString(R.string.selected_date_of_birth));
         }
     }
 
@@ -55,6 +56,7 @@ public class DetailsActivity extends BasePresenter
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString(getString(R.string.profile_picture_uri),
                 selectedImageUri == null ? null : selectedImageUri.toString());
+        savedInstanceState.putSerializable(getString(R.string.selected_date_of_birth), selectedDateOfBirth);
         super.onSaveInstanceState(savedInstanceState);
     }
 
